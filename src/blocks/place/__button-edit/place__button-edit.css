@@ -1,0 +1,19 @@
+.place__button-edit {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 30px 20px 30px 30px;
+  width: 22px;
+  aspect-ratio: 1;
+  background: url("/pen.svg");
+
+  grid-area: like;
+  align-self: center;
+}
+
+.place__button-like {
+}
+
+.place__button-like:hover {
+  opacity: 0.5;
+}
