@@ -9,8 +9,8 @@ function SelectorIsLiked() {
   return (
     <select className="selector" title="isLiked" value={filterIsLiked} onChange={(event) => {dispatch(setFilter({"isLiked": event.target.value}))}}>
       <option key={getUniqueKey()} value="">Без разницы</option>
-      <option key={getUniqueKey()} value="false">Есть</option>
-      <option key={getUniqueKey()} value="true">Нет</option>
+      <option key={getUniqueKey()} value="false">Нет</option>
+      <option key={getUniqueKey()} value="true">Есть</option>
     </select>
   );
 }
