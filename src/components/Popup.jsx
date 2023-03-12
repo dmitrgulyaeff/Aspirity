@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function Popup({ visible, setVisible, children }) {
   const handlerClosePopup = (event) => {
     if (event.target === event.currentTarget) {
@@ -7,29 +5,27 @@ function Popup({ visible, setVisible, children }) {
     }
   };
 
-  return (
-    <section
-      onClick={handlerClosePopup}
-      className={"popup " + (visible ? "popup_opened" : "")}
+  return (<section
+    onMouseDown={handlerClosePopup}
+    className={"popup " + (visible ? "popup_opened" : "")}
+  >
+    <div
+      className="popup__inner popup__inner_type_form"
+      onSubmit={() => {
+        setVisible(false);
+      }}
     >
-      <div
-        className="popup__inner popup__inner_type_form"
-        onSubmit={() => {
+      <button
+        className="popup__button-close"
+        type="button"
+        aria-label="Закрыть поп-ап"
+        onClick={() => {
           setVisible(false);
         }}
-      >
-        <button
-          className="popup__button-close"
-          type="button"
-          aria-label="Закрыть поп-ап"
-          onClick={() => {
-            setVisible(false);
-          }}
-        ></button>
-        {children}
-      </div>
-    </section>
-  );
+      ></button>
+      {children}
+    </div>
+  </section>);
 }
 
 export default Popup;

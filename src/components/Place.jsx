@@ -1,31 +1,25 @@
-import { useState, useContext } from "react";
-import { Context } from "../utils/context";
+import {useDispatch} from "react-redux";
+import { deletePlace } from "../features/reducers/placesSlice.js";
+import {togglePlaceLike} from "../features/reducers/placesSlice.js";
 
-function Place(props) {
-  const { deletePlace, setIsLike, places, setEditId, setPopupEditActive } =
-    useContext(Context);
-  props = props.props;
-  const [isLiked, setIsLiked] = useState(places[props.id]["isLiked"]);
-  const handleLike = () => {
-    setIsLike(!isLiked);
-    setIsLike(props.id, isLiked);
-    console.log(places);
+function Place({ id, name, link, country, isLiked, setEditableId }) {
+  const dispatch = useDispatch();
+
+  const handlerLike = () => {
+    dispatch(togglePlaceLike({id}))
   };
 
-  const [visible, setVisible] = useState(true);
   const handlerRemovePlace = () => {
-    setVisible(false);
-    deletePlace(props.id);
-  };
+    dispatch(deletePlace({id}))
 
-  const handlerEditPlace = async () => {
-    const newId = props.id;
-    await setEditId(() => newId);
-    await setPopupEditActive(true);
-  };
+  }
 
-  return visible ? (
-    <li className="places__list-item" id={props.id}>
+  const handlerEditPlace = () => {
+    setEditableId(id)
+  }
+
+  return (
+    <li className="places__list-item" >
       <article className="place">
         <button
           className="place__button-delete-place"
@@ -40,9 +34,9 @@ function Place(props) {
           onClick={handlerEditPlace}
         ></button>
 
-        <img className="place__photo" src={props.link} alt={props.name} />
-        <h2 className="place__name">{props.name}</h2>
-        <h2 className="place__country">{props.country}</h2>
+        <img className="place__photo" src={link} alt={name} />
+        <h2 className="place__name">{name}</h2>
+        <h2 className="place__country">{country}</h2>
         <button
           className={
             "place__button-like " +
@@ -50,12 +44,10 @@ function Place(props) {
           }
           type="button"
           aria-label="Лайк"
-          onClick={handleLike}
+          onClick={handlerLike}
         ></button>
       </article>
     </li>
-  ) : (
-    ""
   );
 }
 

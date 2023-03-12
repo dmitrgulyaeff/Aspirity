@@ -1,0 +1,24 @@
+.button-add-place {
+  border-radius: 30px;
+  background-color: aliceblue;
+  height: min-content;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.button-add-place:focus {
+  color: #171e29;
+}
+
+.button-add-place:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.button-add-place:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
